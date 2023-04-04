@@ -46,8 +46,8 @@ class MyHomePage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('A random-ish idea:'),
             TextCard(pairWords: pairWords),
+            SizedBox(height: 15),
             //Button
             ElevatedButton(
               onPressed: (){

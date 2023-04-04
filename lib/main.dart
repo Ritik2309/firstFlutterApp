@@ -27,24 +27,31 @@ class MyApp extends StatelessWidget {
 
 class MyAppState extends ChangeNotifier {
   var current = WordPair.random();
+
+  void getNextWord() {
+    current = WordPair.random();
+    notifyListeners();
+  }
+
 }
 
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var appState = context.watch<MyAppState>();
+    var pairWords = appState.current;
 
     return Scaffold(
       body: Column(
         children: [
           Text('A random-ish idea:'),
-          Text(appState.current.asLowerCase),
+          Text(pairWords.asPascalCase),
           //Button
           ElevatedButton(
             onPressed: (){
-              print('Button Pressed!');
+             appState.getNextWord();
             },
-            child: Text('Next: '),
+            child: Text('Next Word: '),
           ),
         ],
       ),

@@ -45,7 +45,7 @@ class MyHomePage extends StatelessWidget {
       body: Column(
         children: [
           Text('A random-ish idea:'),
-          Text(pairWords.asPascalCase),
+          TextCard(pairWords: pairWords),
           //Button
           ElevatedButton(
             onPressed: (){
@@ -54,6 +54,28 @@ class MyHomePage extends StatelessWidget {
             child: Text('Next Word: '),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class TextCard extends StatelessWidget {
+  const TextCard({
+    super.key,
+    required this.pairWords,
+  });
+
+  final WordPair pairWords;
+
+  @override
+  Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+
+    return Card(
+      color: theme.colorScheme.primary,
+      child: Padding(
+        padding: const EdgeInsets.all(25),
+        child: Text(pairWords.asPascalCase),
       ),
     );
   }

@@ -42,18 +42,21 @@ class MyHomePage extends StatelessWidget {
     var pairWords = appState.current;
 
     return Scaffold(
-      body: Column(
-        children: [
-          Text('A random-ish idea:'),
-          TextCard(pairWords: pairWords),
-          //Button
-          ElevatedButton(
-            onPressed: (){
-             appState.getNextWord();
-            },
-            child: Text('Next Word: '),
-          ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('A random-ish idea:'),
+            TextCard(pairWords: pairWords),
+            //Button
+            ElevatedButton(
+              onPressed: (){
+               appState.getNextWord();
+              },
+              child: Text('Next Word: '),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -70,12 +73,18 @@ class TextCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
+    var style = theme.textTheme.displayLarge!.copyWith(
+      color: theme.colorScheme.onPrimary,
+    );
 
     return Card(
       color: theme.colorScheme.primary,
       child: Padding(
         padding: const EdgeInsets.all(25),
-        child: Text(pairWords.asPascalCase),
+        child: Text(
+          pairWords.asUpperCase, 
+          style: style, 
+          semanticsLabel: pairWords.asPascalCase),
       ),
     );
   }
